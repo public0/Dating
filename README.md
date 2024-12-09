@@ -51,10 +51,12 @@ In bootstrap/app.php i added all the routes
 
 #### The migration endpoint (suggest starting with this one) normally this would be ran with php artisan migrate in the case of laravel
 http://localhost:8000/public/migrate
+
 ``` $this->router->get('/migrate', [UserController::class, 'migrate']); ```
 
 #### POST Register
 http://localhost:8000/public/register
+
 ``` $this->router->post('/register', [UserController::class, 'register']); ```
 `POST data`
 `required input: first_name`
@@ -65,6 +67,7 @@ http://localhost:8000/public/register
 
 #### POST Login
 http://localhost:8000/public/login
+
 ``` $this->router->post('/login', [UserController::class, 'login']); ```
 `POST data`
 `required input: email`
@@ -72,21 +75,26 @@ http://localhost:8000/public/login
 
 #### GET Logged in user details
 http://localhost:8000/public/user
+
 ``` $this->router->get('/user', [UserController::class, 'show']); ```
 
 #### Search by first_name, last_name (this should problably be done in something like elasticsearch)
 http://localhost:8000/public/search?term=Ju
+
 ``` $this->router->get('/search', [UserController::class, 'search']); ```
 
 #### Post send message
 http://localhost:8000/public/message
+
 ``` $this->router->post('/message', [UserController::class, 'sendMessage']); ```
 
 #### GET paginated messages 
 http://localhost:8000/public/messages?id=4&page=1
+
 ``` $this->router->get('/messages', [UserController::class, 'messages']); ```
 
 #### GET TOP profiles 
 http://localhost:8000/public/profiles
-$this->router->get('/profiles', [UserController::class, 'topProfiles']);
+
+``` $this->router->get('/profiles', [UserController::class, 'topProfiles']); ```
 
