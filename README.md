@@ -128,12 +128,13 @@ ORDER BY
 LIMIT 5
 ```
 Since I initially assumed this would be a more barebones approach (instead of using a framework ex. Laravel) I assumed you wanted to see the query more than just how i made relations between models so i decided to write the actual query instead.
-As far as i can tell it's a pretty straightforward query unless i'm completely off, we just order desc by conversation_count and we limit 5, I also cached the results for this in redis, this being the only endpoint i used redis on.
+As far as i can tell it's a pretty straightforward query unless i'm completely off, we just order desc by conversation_count and we limit the results to 5, I also cached the results for this in redis, this being the only endpoint i used redis on.
 
 ### Redis Caching
 My caching approach as visible in UserRepositoy->topProfiles is pretty much i set a ttl of 600 seconds if it expires it returns the data from the db and if it's not expired it takes it from the redis cache. 
 Note: the 600 seconds should be in a config file, as well as the `top_profiles` key some might say
 
 ## Notes
-This being my own implementation I am well aware many things are missing that laravel provides such as input validation (although illuminate/database does provide sanitization against sql injection), a more robust middleware, better routing, DTO (in the form of API Resources), a better container implementation that my own rudimentary one and much more.
-I am aware I am not using any .env files or config files in order to hide credentials and other sensitive data 
+1. This being my own implementation I am aware many things are missing that laravel provides such as input validation (although illuminate/database does provide sanitization against sql injection), a more robust middleware, better routing, DTO (in the form of API Resources), a better container implementation than my own rudimentary one and much more.
+
+2. I am aware I am not using any .env files or config files in order to hide credentials and other sensitive data 
