@@ -111,7 +111,10 @@ class UserRepository
          */
         $user1_id = min($user->id, $to);
         $user2_id = max($user->id, $to);
-        $conversation = Conversation::where(['user1_id' => $user1_id])->first();
+        $conversation = Conversation::where([
+            'user1_id' => $user1_id,
+            'user2_id' => $user2_id
+        ])->first();
         if(!$conversation) {
             $conversation = Conversation::Create(
                 [

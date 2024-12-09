@@ -2,7 +2,18 @@
 
 ## Installation
 
-git clone
+``` git clone https://github.com/public0/Dating.git ```
+
+cd into the project and run 
+``` php -S localhost:8000 ```
+
+In case you don't have a redis server working
+``` docker run --name dating-redis-server -p 6379:6379 -d redis ```
+
+I'm assuming who is testing this has a mysql server running they should add the database ```date_test``` and run the migration (connection details are in bootstrap/app.php) no .env files or config filesused for this project
+
+Using postman or any other similar HTTP clients access to run migrations
+http://localhost:8000/public/migrate
 
 I'd like to start by adding that I initially understood this was to be a no framework to be used project so that's how i did it. With that said I am using eloquent, I did implement my own container, router, bootstrap and i did go with the MVC pattern.
 
@@ -98,3 +109,31 @@ http://localhost:8000/public/profiles
 
 ``` $this->router->get('/profiles', [UserController::class, 'topProfiles']); ```
 
+
+### Top 5 profiles
+```
+SELECT u.id AS user_id,
+    u.first_name,
+    u.last_name,
+    COUNT(c.id) AS conversation_count
+FROM users u
+LEFT JOIN 
+    conversations c
+ON 
+    u.id = c.user1_id OR u.id = c.user2_id
+GROUP BY 
+    u.id, u.first_name, u.last_name
+ORDER BY 
+    conversation_count DESC
+LIMIT 5
+```
+Since I initially assumed this would be a more barebones approach (instead of using a framework ex. Laravel) I assumed you wanted to see the query more than just how i made relations between models so i decided to write the actual query instead.
+As far as i can tell it's a pretty straightforward query unless i'm completely off, we just order desc by conversation_count and we limit 5, I also cached the results for this in redis, this being the only endpoint i used redis on.
+
+### Redis Caching
+My caching approach as visible in UserRepositoy->topProfiles is pretty much i set a ttl of 600 seconds if it expires it returns the data from the db and if it's not expired it takes it from the redis cache. 
+Note: the 600 seconds should be in a config file, as well as the `top_profiles` key some might say
+
+## Notes
+This being my own implementation I am well aware many things are missing that laravel provides such as input validation (although illuminate/database does provide sanitization against sql injection), a more robust middleware, better routing, DTO (in the form of API Resources), a better container implementation that my own rudimentary one and much more.
+I am aware I am not using any .env files or config files in order to hide credentials and other sensitive data 
