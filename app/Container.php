@@ -32,6 +32,7 @@ class Container implements ContainerInterface {
     public function resolve(string $id)
     {
         $reflectionClass = new \ReflectionClass($id);
+
         if(!$reflectionClass->isInstantiable()) {
             throw new Exception('Class '.$id.' not instantiable!');
         }
@@ -42,7 +43,7 @@ class Container implements ContainerInterface {
             return new $id;
 
         $params = $constructor->getParameters();
-
+        
         if(!$params)
             return new $id;
 

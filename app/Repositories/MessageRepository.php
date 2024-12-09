@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 
-class BuildingRepository
+class MessageRepository
 {
     public function __construct()
     {

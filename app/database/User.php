@@ -12,13 +12,12 @@ class User
             $table->id();
         
             $table->string('first_name');
-
             $table->string('last_name');
-        
+            $table->char('sex', 1);
             $table->string('email')->unique();
-                
-            $table->string('token')->nullable()->unique();
-                
+            $table->string('password');
+
+            $table->string('token', 32)->nullable()->unique();
             $table->timestamps();
         });        
     }

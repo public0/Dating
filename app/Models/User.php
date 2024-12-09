@@ -17,7 +17,7 @@ class User extends Eloquent
 
    protected $fillable = [
 
-       'name', 'email', 'password','userimage'
+       'first_name', 'last_name', 'email', 'password', 'token',
 
    ];
 
@@ -32,10 +32,5 @@ class User extends Eloquent
        'password', 'remember_token',
 
    ];
-
-   public function departments(): BelongsToMany
-   {
-       return $this->belongsToMany(Department::class);
-   }
 
  }

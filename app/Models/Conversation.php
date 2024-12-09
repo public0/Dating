@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Building extends Eloquent
+class Conversation extends Eloquent
 
 {
 
@@ -16,19 +17,14 @@ class Building extends Eloquent
    */
 
    protected $fillable = [
-
-       'name'
+    'user1_id',
+    'user2_id'
 
    ];
 
-   /*
-   * Get Todo of User
-   *
-   */
-
-   public function departments(): BelongsToMany
+   public function messages(): HasMany
    {
-       return $this->belongsToMany(Department::class);
+       return $this->hasMany(Message::class);
    }
 
  }

@@ -11,6 +11,11 @@
 },
     "require": {
         "illuminate/database": "^10.3",
-        "psr/container": "^2.0"
+        "psr/container": "^2.0",
+        "predis/predis": "^2.3",
+        "illuminate/pagination": "^10.48"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10"
     }
 }
