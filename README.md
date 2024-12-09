@@ -2,15 +2,20 @@
 
 ## Installation
 
-``` git clone https://github.com/public0/Dating.git ```
+RUN ``` git clone https://github.com/public0/Dating.git ```
 
-cd into the project and run 
-``` php -S localhost:8000 ```
+
+cd into the project 
+If composer is installed globally
+RUN ``` composer install ```
+
+RUN ``` php -S localhost:8000 ```
 
 In case you don't have a redis server working
-``` docker run --name dating-redis-server -p 6379:6379 -d redis ```
 
-I'm assuming who is testing this has a mysql server running they should add the database ```date_test``` and run the migration (connection details are in bootstrap/app.php) no .env files or config filesused for this project
+RUN ``` docker run --name dating-redis-server -p 6379:6379 -d redis ```
+
+I'm assuming who is testing this has a mysql server running they should create the database ```date_test``` and run the migration (connection details are in bootstrap/app.php) no .env files or config filesused for this project
 
 Using postman or any other similar HTTP clients access to run migrations
 http://localhost:8000/public/migrate
@@ -135,6 +140,6 @@ My caching approach as visible in UserRepositoy->topProfiles is pretty much i se
 Note: the 600 seconds should be in a config file, as well as the `top_profiles` key some might say
 
 ## Notes
-1. This being my own implementation I am aware many things are missing that laravel provides such as input validation (although illuminate/database does provide sanitization against sql injection), a more robust middleware, better routing, DTO (in the form of API Resources), a better container implementation than my own rudimentary one and much more.
+1. This being my own implementation I am aware many things are missing that laravel provides such as input validation (although illuminate/database does provide sanitization against sql injection), a more robust middleware and error handling, better routing, DTO (in the form of API Resources), a better container implementation than my own rudimentary one and much more.
 
 2. I am aware I am not using any .env files or config files in order to hide credentials and other sensitive data 

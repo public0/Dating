@@ -104,6 +104,6 @@ class UserController extends Controller {
         Conversation::migrate();
         Message::migrate();
         $this->container->get(DatabaseSeeder::class)->run();
-
+        return response()->json('Done');
     }
 }
