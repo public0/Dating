@@ -59,7 +59,7 @@ The migration schemas are in app/database/ and the seeders in app/database/seede
 - messages.conversation_id -> conversations.id
 - messages.user_id -> users.id
 
-In a dating app only 2 people can talk so a conversation is mainly 2 ids while messages is the message sent and who sent the message (NOTE: messsages should probably be saved in a nosql instead of a RDBMS). The more risky decision I made that I assume some might not agree is that I decided that for the conversations table user1_id is always smaller than user2_id in order to make it let's say more robust when querying.
+In a dating app only 2 people can talk so a conversation is mainly 2 ids while messages is the message sent and who sent the message (NOTE: messsages should probably be saved in a nosql instead of a RDBMS). The more risky decision I made that I assume some might not agree with is that I decided that for the conversations table user1_id is always smaller than user2_id in order to make it let's say more robust when querying.
 
 ## Endpoints
 
@@ -140,6 +140,6 @@ My caching approach as visible in UserRepositoy->topProfiles is pretty much i se
 Note: the 600 seconds should be in a config file, as well as the `top_profiles` key some might say
 
 ## Notes
-1. This being my own implementation I am aware many things are missing that laravel provides such as input validation (although illuminate/database does provide sanitization against sql injection), a more robust middleware and error handling, better routing, DTO (in the form of API Resources), a better container implementation than my own rudimentary one and much more.
+1. This being my own implementation I am aware many things are missing that laravel provides such as input validation (although illuminate/database does provide sanitization against sql injection), a more robust middleware and error handling, Authorization, better routing, DTO (in the form of API Resources), a better container implementation than my own rudimentary one and much more.
 
 2. I am aware I am not using any .env files or config files in order to hide credentials and other sensitive data 
