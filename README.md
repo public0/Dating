@@ -74,11 +74,17 @@ http://localhost:8000/public/migrate
 http://localhost:8000/public/register
 
 ``` $this->router->post('/register', [UserController::class, 'register']); ```
+
 `POST data`
+
 `required input: first_name`
+
 `required input: last_name`
+
 `required input: email`
+
 `required input: password`
+
 `required input: sex`
 
 #### POST Login
@@ -86,8 +92,11 @@ http://localhost:8000/public/login
 
 ``` $this->router->post('/login', [UserController::class, 'login']); ```
 `POST data`
+
 `required input: email`
+
 `required input: password`
+
 
 #### GET Logged in user details
 http://localhost:8000/public/user
@@ -103,6 +112,12 @@ http://localhost:8000/public/search?term=Ju
 http://localhost:8000/public/message
 
 ``` $this->router->post('/message', [UserController::class, 'sendMessage']); ```
+
+`POST data`
+
+`required input: to`
+
+`optional input: message`
 
 #### GET paginated messages 
 http://localhost:8000/public/messages?id=4&page=1
