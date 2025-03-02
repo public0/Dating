@@ -1,4 +1,4 @@
-# BD Technologies AG - Dating app
+# Vanilla php Dating app
 
 ## Installation
 
